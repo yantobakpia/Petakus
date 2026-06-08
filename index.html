@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     
-    <!-- SEO Meta Tags -->
     <meta name="description" content="PT Pesona Lintang Kemukus - Penyedia jasa sewa kendaraan kecil, besar, dan alat berat untuk korporasi serta proyek jalan tol. Terpercaya, armada modern, dukung penuh operasional Anda.">
     <meta name="author" content="PT Pesona Lintang Kemukus">
     <meta name="keywords" content="sewa kendaraan korporasi, sewa alat berat, rental mobil corporate, alat berat proyek tol, rental truck, sewa excavator">
     
-    <!-- OG Meta Tags -->
     <meta property="og:site_name" content="PT Pesona Lintang Kemukus" />
     <meta property="og:site" content="https://www.pesonalintangkemukus.com" />
     <meta property="og:title" content="PT Pesona Lintang Kemukus - Sewa Kendaraan & Alat Berat Corporate" />
@@ -20,20 +18,153 @@
     
     <title>PT Pesona Lintang Kemukus | Sewa Kendaraan & Alat Berat Corporate & Tol</title>
     
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: Inter + Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    <!-- AOS Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <!-- Favicon -->
     <link rel="icon" href="image/logo.png" type="image/png">
     
     <style>
-        /* ===== CUSTOM STYLES - BLUE THEME ===== */
+        /* ===== LOADER STYLES ===== */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a2540 0%, #1a365d 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+        }
+        
+        .loader-wrapper.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader-container {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        /* Animated Logo */
+        .loader-logo {
+            margin-bottom: 2rem;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        
+        .loader-logo img {
+            width: 100px;
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(96, 165, 250, 0.5));
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        /* Spinner */
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            margin: 20px auto;
+            border: 4px solid rgba(96, 165, 250, 0.2);
+            border-top: 4px solid #60a5fa;
+            border-right: 4px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            width: 280px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #60a5fa, #3b82f6);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        
+        /* Loading Text */
+        .loading-text {
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            letter-spacing: 2px;
+        }
+        
+        .loading-dots {
+            display: inline-block;
+        }
+        
+        .loading-dots span {
+            animation: blink 1.4s infinite;
+            animation-fill-mode: both;
+        }
+        
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes blink {
+            0%, 80%, 100% { opacity: 0; }
+            40% { opacity: 1; }
+        }
+        
+        /* Percentage Text */
+        .percentage {
+            color: #60a5fa;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 10px;
+            font-family: 'Poppins', monospace;
+        }
+        
+        /* Loading Messages */
+        .loading-message {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 15px;
+            transition: opacity 0.3s ease;
+        }
+        
+        /* Main Content - Initially Hidden */
+        .main-content {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .main-content.visible {
+            opacity: 1;
+        }
+        
+        /* ===== ORIGINAL CUSTOM STYLES ===== */
         * {
             margin: 0;
             padding: 0;
@@ -121,6 +252,29 @@
             filter: brightness(0) invert(1);
         }
         
+        /* FIX NAVBAR MOBILE MENTOK KANAN */
+        .navbar > .container {
+            flex-wrap: nowrap;
+        }
+        .navbar-brand {
+           max-width: 75%; 
+            min-width: 0;
+        }
+        
+        .brand-logo-img {
+            width: 45px;
+            height: auto;
+            flex-shrink: 0;
+        }
+
+        .brand-text {
+            font-size: 1.1rem;
+            white-space: normal;
+            line-height: 1.2;
+            word-break: break-word;
+            display:inline-block;
+        }
+
         @media (max-width: 992px) {
             .navbar .navbar-collapse {
                 background: linear-gradient(135deg, #0a2540 0%, #1a365d 100%);
@@ -135,6 +289,21 @@
             .navbar .btn {
                 width: 100%;
                 margin-top: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            .visi-misi-card {
+                padding: 1.5rem;
+            }
+            .brand-text {
+                font-size: 0.9rem;
+            }
+            .brand-logo-img {
+                width: 35px;
             }
         }
         
@@ -278,18 +447,6 @@
             box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
         }
         
-        @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 2rem;
-            }
-            .visi-misi-card {
-                padding: 1.5rem;
-            }
-            .navbar-brand {
-                font-size: 0.9rem;
-            }
-        }
-        
         .text-primary-blue {
             color: var(--primary-blue) !important;
         }
@@ -303,27 +460,9 @@
             box-shadow: 0 15px 30px -12px rgba(37, 99, 235, 0.2);
         }
         
-        .navbar-brand img {
-            transition: transform 0.3s ease;
-        }
-        
-        .navbar-brand:hover img {
+        .navbar-brand:hover .brand-logo-img {
             transform: scale(1.05);
-        }
-        
-        /* Form WA Button Style */
-        .btn-primary-blue {
-            background: linear-gradient(135deg, #1a56db 0%, #0d3b8f 100%);
-            border: none;
-            color: white;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 12px;
-        }
-        
-        .btn-primary-blue:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(26, 86, 219, 0.3);
-            color: white;
+            transition: transform 0.3s ease;
         }
         
         .alert {
@@ -334,12 +473,37 @@
 </head>
 <body>
 
-<!-- ========== NAVBAR ========== -->
+<!-- ===== LOADER SYSTEM ===== -->
+<div class="loader-wrapper" id="loaderWrapper">
+    <div class="loader-container">
+        <div class="loader-logo">
+            <img src="image/logo.png" alt="Logo" onerror="this.src='https://placehold.co/100x100/2563eb/white?text=PLK'">
+        </div>
+        <div class="loader-spinner"></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="percentage" id="percentage">0%</div>
+        <div class="loading-text">
+            MEMUAT SISTEM
+            <div class="loading-dots">
+                <span>.</span><span>.</span><span>.</span>
+            </div>
+        </div>
+        <div class="loading-message" id="loadingMessage">
+            Menyiapkan antarmuka...
+        </div>
+    </div>
+</div>
+
+<!-- Main Content Wrapper -->
+<div class="main-content" id="mainContent">
+
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
     <div class="container">
-        <a class="navbar-brand fw-bold text-white fs-4 d-flex align-items-center" href="#">
-            <img src="image/logo.png" width="50" class="d-inline-block align-text-top me-2" alt="Logo PT Pesona Lintang Kemukus" onerror="this.src='https://placehold.co/45x45/2563eb/white?text=PLK'">
-            <span>Pesona Lintang Kemukus</span>
+        <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="#">
+            <img src="image/logo.png" class="d-inline-block align-text-top me-2 brand-logo-img" alt="Logo PT Pesona Lintang Kemukus" onerror="this.src='https://placehold.co/45x45/2563eb/white?text=PLK'">
+            <span class="brand-text">Pesona Lintang Kemukus</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -360,7 +524,6 @@
     </div>
 </nav>
 
-<!-- ========== HERO SECTION ========== -->
 <section id="home" class="hero-section pt-5 mt-5">
     <div class="container py-5">
         <div class="row align-items-center min-vh-75 py-md-5">
@@ -369,7 +532,7 @@
                 <h1 class="display-4 fw-bold mb-3">Sewa Kendaraan & Alat Berat<br> <span style="color: #60a5fa;">Terpercaya Untuk Perusahaan</span></h1>
                 <p class="lead mb-4 opacity-90">Mulai dari kendaraan kecil hingga alat berat proyek tol. PT Pesona Lintang Kemukus (PETAKUS) menghadirkan layanan premium untuk korporasi dengan standar keselamatan dan ketepatan waktu.</p>
                 <div class="d-flex flex-wrap gap-3">
-                    <a href="#kontak" class="btn btn-primary-blue btn-lg px-4"><i class="fas fa-calendar-check me-2"></i> Konsultasi Sekarang</a>
+                    <a href="https://wa.me/6285156262804" class="btn btn-primary-blue btn-lg px-4"><i class="fas fa-calendar-check me-2"></i> Konsultasi Sekarang</a>
                     <a href="#tentang" class="btn btn-outline-light btn-lg px-4" style="border-color: white; color: white;">Jelajahi Layanan</a>
                 </div>
                 <div class="row mt-5 g-4">
@@ -385,7 +548,6 @@
     </div>
 </section>
 
-<!-- ========== TENTANG PERUSAHAAN ========== -->
 <section id="tentang" class="py-5 bg-soft-blue">
     <div class="container py-4">
         <div class="row g-5 align-items-center">
@@ -420,7 +582,6 @@
     </div>
 </section>
 
-<!-- ========== VISI & MISI ========== -->
 <section id="visimisi" class="py-5">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
@@ -452,7 +613,6 @@
     </div>
 </section>
 
-<!-- ========== STRUKTUR PERUSAHAAN ========== -->
 <section id="struktur" class="py-5 bg-soft-blue">
     <div class="container">
         <div class="text-center mb-4" data-aos="fade-up">
@@ -515,7 +675,6 @@
     </div>
 </section>
 
-<!-- ========== PENGALAMAN PEKERJAAN ========== -->
 <section id="pekerjaan" class="py-5">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
@@ -552,7 +711,6 @@
     </div>
 </section>
 
-<!-- ========== LOKASI PEKERJAAN ========== -->
 <section id="lokasi" class="py-5 bg-soft-blue">
     <div class="container">
         <div class="row align-items-center">
@@ -584,7 +742,6 @@
     </div>
 </section>
 
-<!-- ========== PARTNER DAN SUPPORT ========== -->
 <section id="mitra" class="py-5">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
@@ -625,7 +782,6 @@
     </div>
 </section>
 
-<!-- Support Section Dedicated -->
 <section id="support" class="py-5 bg-soft-blue">
     <div class="container">
         <div class="row g-4 align-items-center">
@@ -654,7 +810,6 @@
     </div>
 </section>
 
-<!-- ========== FORM KONTAK WHATSAPP ========== -->
 <section id="kontak" class="py-5">
     <div class="container">
         <div class="row justify-content-center">
@@ -663,13 +818,11 @@
                 <h2 class="section-title">Siap Mendukung Kebutuhan Operasional Anda?</h2>
                 <p class="mb-4">Dapatkan penawaran terbaik untuk sewa kendaraan dan alat berat, khusus untuk korporasi dan proyek jalan tol</p>
                 
-                <!-- NOTIFIKASI SUKSES -->
                 <div id="successAlert" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
                     <i class="fas fa-check-circle me-2"></i> Pesan berhasil dikirim! Anda akan diarahkan ke WhatsApp dalam beberapa detik.
                     <button type="button" class="btn-close" onclick="document.getElementById('successAlert').style.display='none'"></button>
                 </div>
                 
-                <!-- NOTIFIKASI ERROR -->
                 <div id="errorAlert" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
                     <i class="fas fa-exclamation-triangle me-2"></i> <span id="errorMessage"></span>
                     <button type="button" class="btn-close" onclick="document.getElementById('errorAlert').style.display='none'"></button>
@@ -707,7 +860,6 @@
     </div>
 </section>
 
-<!-- ========== FOOTER ========== -->
 <footer class="footer pt-5 pb-4">
     <div class="container">
         <div class="row">
@@ -739,18 +891,104 @@
     </div>
 </footer>
 
-<!-- Scripts -->
+</div> <!-- end main-content -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    // Initialize AOS
-    AOS.init({
-        duration: 800,
-        once: true,
-        offset: 50
-    });
+    // ========== LOADER SYSTEM ==========
+    (function() {
+        const loaderWrapper = document.getElementById('loaderWrapper');
+        const mainContent = document.getElementById('mainContent');
+        const progressBar = document.getElementById('progressBar');
+        const percentageSpan = document.getElementById('percentage');
+        const loadingMessage = document.getElementById('loadingMessage');
+        
+        // Array of loading messages
+        const messages = [
+            'Menyiapkan antarmuka...',
+            'Memuat data perusahaan...',
+            'Menyajikan layanan terbaik...',
+            'Mempersiapkan portofolio...',
+            'Hampir selesai...'
+        ];
+        
+        let progress = 0;
+        let messageIndex = 0;
+        
+        // Update progress bar
+        function updateProgress() {
+            const interval = setInterval(() => {
+                if (progress < 100) {
+                    progress += Math.floor(Math.random() * 10) + 1;
+                    if (progress > 100) progress = 100;
+                    
+                    progressBar.style.width = progress + '%';
+                    percentageSpan.textContent = progress + '%';
+                    
+                    // Change message at certain percentages
+                    if (progress >= 25 && messageIndex === 0) {
+                        messageIndex = 1;
+                        loadingMessage.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingMessage.textContent = messages[1];
+                            loadingMessage.style.opacity = '1';
+                        }, 300);
+                    } else if (progress >= 50 && messageIndex === 1) {
+                        messageIndex = 2;
+                        loadingMessage.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingMessage.textContent = messages[2];
+                            loadingMessage.style.opacity = '1';
+                        }, 300);
+                    } else if (progress >= 75 && messageIndex === 2) {
+                        messageIndex = 3;
+                        loadingMessage.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingMessage.textContent = messages[3];
+                            loadingMessage.style.opacity = '1';
+                        }, 300);
+                    } else if (progress >= 90 && messageIndex === 3) {
+                        messageIndex = 4;
+                        loadingMessage.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingMessage.textContent = messages[4];
+                            loadingMessage.style.opacity = '1';
+                        }, 300);
+                    }
+                    
+                    if (progress === 100) {
+                        clearInterval(interval);
+                        // Wait a bit before hiding loader
+                        setTimeout(() => {
+                            loaderWrapper.classList.add('fade-out');
+                            mainContent.classList.add('visible');
+                            
+                            // Remove loader from DOM after animation
+                            setTimeout(() => {
+                                loaderWrapper.style.display = 'none';
+                            }, 500);
+                            
+                            // Initialize AOS after content is visible
+                            AOS.init({
+                                duration: 800,
+                                once: true,
+                                offset: 50
+                            });
+                            
+                            // Trigger scroll event to fix navbar active state
+                            window.dispatchEvent(new Event('scroll'));
+                        }, 500);
+                    }
+                }
+            }, 80);
+        }
+        
+        // Start loading
+        updateProgress();
+    })();
     
-    // Smooth scroll + active nav highlight
+    // ========== SMOOTH SCROLL & NAVIGATION ==========
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
     const sections = document.querySelectorAll('section[id]');
     
@@ -772,137 +1010,121 @@
         });
     });
     
-    // Smooth scroll for anchor links
+    // Smooth scroll for anchor links + auto-close mobile navbar
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            const target = document.querySelector(this.getAttribute('href'));
-            if(target) {
+            const href = this.getAttribute('href');
+            const target = document.querySelector(href);
+            if(target && href !== '#') {
                 e.preventDefault();
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // If navbar is open on mobile, close it after clicking a link
+                const navbarCollapseEl = document.querySelector('.navbar-collapse');
+                if (navbarCollapseEl && navbarCollapseEl.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapseEl, {toggle: false});
+                    bsCollapse.hide();
+                }
             }
         });
     });
     
-    // ========== WHATSAPP FORM HANDLER (FIXED) ==========
-    // GANTI NOMOR INI DENGAN NOMOR WHATSAPP TUJUAN ANDA
-    const WHATSAPP_NUMBER = '6285156262804'; // Contoh: 6281234567890 (tanpa '+' dan spasi)
+    // ========== WHATSAPP FORM HANDLER ==========
+    const WHATSAPP_NUMBER = '6285156262804';
     
-    // Format nomor telepon Indonesia (opsional)
     function formatPhoneNumber(phone) {
-        // Hapus semua karakter non-digit
         let cleaned = phone.replace(/\D/g, '');
-        
-        // Jika diawali dengan '0', ganti dengan '62'
         if (cleaned.startsWith('0')) {
             cleaned = '62' + cleaned.substring(1);
         }
-        
-        // Jika diawali dengan '62' dan panjang sudah sesuai
         if (cleaned.startsWith('62') && cleaned.length >= 10) {
             return cleaned;
         }
-        
-        // Jika sudah dalam format internasional lain
         return cleaned;
     }
     
-    // Ambil elemen form
     const waForm = document.getElementById('waForm');
     const successAlert = document.getElementById('successAlert');
     const errorAlert = document.getElementById('errorAlert');
     const errorMessage = document.getElementById('errorMessage');
     
-    // Sembunyikan alert helper
     function hideAlerts() {
-        successAlert.style.display = 'none';
-        errorAlert.style.display = 'none';
+        if(successAlert) successAlert.style.display = 'none';
+        if(errorAlert) errorAlert.style.display = 'none';
     }
     
-    // Tampilkan error
     function showError(message) {
-        errorMessage.innerText = message;
-        errorAlert.style.display = 'block';
+        if(errorMessage) errorMessage.innerText = message;
+        if(errorAlert) errorAlert.style.display = 'block';
         setTimeout(() => {
-            errorAlert.style.display = 'none';
+            if(errorAlert) errorAlert.style.display = 'none';
         }, 4000);
     }
     
-    // Tampilkan sukses
     function showSuccess() {
-        successAlert.style.display = 'block';
+        if(successAlert) successAlert.style.display = 'block';
         setTimeout(() => {
-            successAlert.style.display = 'none';
+            if(successAlert) successAlert.style.display = 'none';
         }, 5000);
     }
     
-    // Handle form submit
-    waForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        hideAlerts();
-        
-        // Ambil nilai form
-        const namaPerusahaan = document.getElementById('namaPerusahaan').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const nomorTelepon = document.getElementById('nomorTelepon').value.trim();
-        const kebutuhan = document.getElementById('kebutuhan').value;
-        const detail = document.getElementById('detail').value.trim();
-        
-        // Validasi
-        if (!namaPerusahaan) {
-            showError('❌ Nama Perusahaan harus diisi');
-            return;
-        }
-        
-        if (!email) {
-            showError('❌ Email Corporate harus diisi');
-            return;
-        }
-        
-        // Validasi email sederhana
-        const emailRegex = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
-        if (!emailRegex.test(email)) {
-            showError('❌ Format email tidak valid (contoh: nama@perusahaan.com)');
-            return;
-        }
-        
-        if (!nomorTelepon) {
-            showError('❌ Nomor Telepon/WA harus diisi');
-            return;
-        }
-        
-        // Validasi nomor telepon minimal 10 digit
-        const phoneDigits = nomorTelepon.replace(/\D/g, '');
-        if (phoneDigits.length < 10) {
-            showError('❌ Nomor telepon terlalu pendek (minimal 10 digit)');
-            return;
-        }
-        
-        // Format pesan WhatsApp
-        let pesan = `*PERMINTAAN SEWA KENDARAAN & ALAT BERAT*\n\n`;
-        pesan += `*Nama Perusahaan:* ${namaPerusahaan}\n`;
-        pesan += `*Email:* ${email}\n`;
-        pesan += `*No. Telepon/WA:* ${nomorTelepon}\n`;
-        pesan += `*Kebutuhan:* ${kebutuhan}\n`;
-        pesan += `*Detail Permintaan:* ${detail || '-'}\n\n`;
-        pesan += `_Pesan dikirim melalui form website pada ${new Date().toLocaleString('id-ID')}_`;
-        
-        // Encode pesan untuk URL
-        const pesanEncoded = encodeURIComponent(pesan);
-        
-        // Buat URL WhatsApp (perbaiki typo variable name)
-        const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${pesanEncoded}`;
-        
-        // Tampilkan notifikasi sukses
-        showSuccess();
-        
-        // Reset form
-        waForm.reset();
-        
-        // Buka WhatsApp setelah 1 detik
-        setTimeout(() => {
-            window.open(waURL, '_blank');
-        }, 1000);
-    });
+    if(waForm) {
+        waForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            hideAlerts();
+            
+            const namaPerusahaan = document.getElementById('namaPerusahaan').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const nomorTelepon = document.getElementById('nomorTelepon').value.trim();
+            const kebutuhan = document.getElementById('kebutuhan').value;
+            const detail = document.getElementById('detail').value.trim();
+            
+            if (!namaPerusahaan) {
+                showError('❌ Nama Perusahaan harus diisi');
+                return;
+            }
+            
+            if (!email) {
+                showError('❌ Email Corporate harus diisi');
+                return;
+            }
+            
+            const emailRegex = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
+            if (!emailRegex.test(email)) {
+                showError('❌ Format email tidak valid (contoh: nama@perusahaan.com)');
+                return;
+            }
+            
+            if (!nomorTelepon) {
+                showError('❌ Nomor Telepon/WA harus diisi');
+                return;
+            }
+            
+            const phoneDigits = nomorTelepon.replace(/\D/g, '');
+            if (phoneDigits.length < 10) {
+                showError('❌ Nomor telepon terlalu pendek (minimal 10 digit)');
+                return;
+            }
+            
+            let pesan = `*PERMINTAAN SEWA KENDARAAN & ALAT BERAT*\n\n`;
+            pesan += `*Nama Perusahaan:* ${namaPerusahaan}\n`;
+            pesan += `*Email:* ${email}\n`;
+            pesan += `*No. Telepon/WA:* ${nomorTelepon}\n`;
+            pesan += `*Kebutuhan:* ${kebutuhan}\n`;
+            pesan += `*Detail Permintaan:* ${detail || '-'}\n\n`;
+            pesan += `_Pesan dikirim melalui form website pada ${new Date().toLocaleString('id-ID')}_`;
+            
+            const pesanEncoded = encodeURIComponent(pesan);
+            const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${pesanEncoded}`;
+            
+            showSuccess();
+            waForm.reset();
+            
+            setTimeout(() => {
+                window.open(waURL, '_blank');
+            }, 1000);
+        });
+    }
 </script>
 </body>
 </html>
