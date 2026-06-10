@@ -12,7 +12,7 @@
     <meta property="og:site" content="https://www.pesonalintangkemukus.com" />
     <meta property="og:title" content="PT Pesona Lintang Kemukus - Sewa Kendaraan & Alat Berat Corporate" />
     <meta property="og:description" content="Layanan sewa kendaraan kecil hingga alat berat untuk korporasi dan proyek jalan tol. Solusi mobilitas terpercaya di Indonesia." />
-    <meta property="og:image" content="https://www.pesonalintangkemukus.com/logo.png" />
+    <meta property="og:image" content="image/logo.png" />
     <meta property="og:url" content="https://www.pesonalintangkemukus.com" />
     <meta property="og:type" content="company" />
     
@@ -187,13 +187,10 @@
             --primary-blue-dark: #0a2540;
             --primary-blue: #2563eb;
             --primary-blue-light: #3b82f6;
-            --primary-blue-soft: #dbeafe;
             --accent-blue: #60a5fa;
             --blue-mid: #eff6ff;
             --gray-soft: #64748b;
             --text-dark: #0f172a;
-            --navbar-gradient-start: #0a2540;
-            --navbar-gradient-end: #1a365d;
         }
         
         .bg-primary-blue {
@@ -235,7 +232,7 @@
             transform: translateY(-2px);
         }
         
-        /* Navbar dengan gradient Dark Navy */
+        /* Navbar styling */
         .navbar {
             background: transparent !important;
             backdrop-filter: none !important;
@@ -249,24 +246,39 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
             padding: 12px 0;
         }
-        .navbar .navbar-brand .brand-text,
-        .navbar .navbar-brand .brand-text {
+        
+        /* ===== PERUBAHAN UTAMA: Teks brand hanya tampil di desktop (min-width: 992px) ===== */
+        .navbar-brand .brand-text {
+            display: none; /* Sembunyikan default untuk mobile/tablet */
+            font-size: 1.1rem;
+            white-space: normal;
+            line-height: 1.2;
+            word-break: break-word;
             color: white !important;
         }
-                .navbar .nav-link {
-            color: white !important;
+        
+        /* Tampilkan teks brand hanya pada layar desktop/laptop (min-width: 992px) */
+        @media (min-width: 992px) {
+            .navbar-brand .brand-text {
+                display: inline-block !important;
+            }
+            .navbar-brand {
+                gap: 0.5rem;
+            }
         }
-
-        /* Setelah scroll, warna bisa tetap atau sedikit berubah */
-        .navbar.navbar-scrolled .nav-link {
-            color: #e2e8f0 !important;
+        
+        /* Atur ukuran logo di navbar */
+        .brand-logo-img {
+            width: 45px;
+            height: auto;
+            transition: transform 0.3s ease;
         }
-
-        .navbar.navbar-scrolled .nav-link:hover,
-        .navbar.navbar-scrolled .nav-link.active {
-            color: #60a5fa !important;
+        
+        /* Hover effect pada logo */
+        .navbar-brand:hover .brand-logo-img {
+            transform: scale(1.05);
         }
-
+        
         /* Tombol outline putih untuk awal */
         .navbar .btn-primary-blue {
             background: transparent !important;
@@ -289,84 +301,19 @@
         .navbar .navbar-toggler-icon {
             filter: brightness(0) invert(1);
         }
-
-        /* Perbaikan padding hero section agar tidak tertutup navbar */
-        .hero-section {
-            padding-top: 0;
-            margin-top: 0;
-        }
-
-        /* Tambahan untuk smooth transition */
-        .navbar .btn-primary-blue,
-        .navbar .nav-link,
-        .navbar-brand {
-            transition: all 0.3s ease;
-        }
+        
         .navbar .navbar-toggler {
             border: 1px solid rgba(255,255,255,0.3);
             background: transparent;
             padding: 8px 12px;
         }
         
-        .navbar .navbar-toggler-icon {
-            filter: brightness(0) invert(1);
-        }
-        
-        /* FIX NAVBAR MOBILE MENTOK KANAN */
+        /* Navbar container */
         .navbar > .container {
             flex-wrap: nowrap;
         }
-        .navbar-brand {
-           max-width: 75%; 
-            min-width: 0;
-        }
         
-        .brand-logo-img {
-            width: 45px;
-            height: auto;
-            flex-shrink: 0;
-        }
-
-        .brand-text {
-            font-size: 1.1rem;
-            white-space: normal;
-            line-height: 1.2;
-            word-break: break-word;
-            display:inline-block;
-        }
-
-        @media (max-width: 992px) {
-            .navbar .navbar-collapse {
-                background: linear-gradient(135deg, #0a2540 0%, #1a365d 100%);
-                margin-top: 0.6rem;
-                padding: 1.2rem;
-                border-radius: 16px;
-                border: 1px solid rgba(255,255,255,0.1);
-            }
-            .navbar .nav-link {
-                padding: 0.6rem 0;
-            }
-            .navbar .btn {
-                width: 100%;
-                margin-top: 0.8rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 2rem;
-            }
-            .visi-misi-card {
-                padding: 1.5rem;
-            }
-            .brand-text {
-                font-size: 0.9rem;
-            }
-            .brand-logo-img {
-                width: 35px;
-            }
-        }
-        
+        /* Styling nav link */
         .navbar .nav-link {
             color: #e2e8f0 !important;
             font-weight: 500;
@@ -391,6 +338,45 @@
             border-radius: 2px;
         }
         
+        .navbar.navbar-scrolled .nav-link {
+            color: #e2e8f0 !important;
+        }
+
+        .navbar.navbar-scrolled .nav-link:hover,
+        .navbar.navbar-scrolled .nav-link.active {
+            color: #60a5fa !important;
+        }
+        
+        /* Mobile navbar collapse styling */
+        @media (max-width: 991.98px) {
+            .navbar .navbar-collapse {
+                background: linear-gradient(135deg, #0a2540 0%, #1a365d 100%);
+                margin-top: 0.6rem;
+                padding: 1.2rem;
+                border-radius: 16px;
+                border: 1px solid rgba(255,255,255,0.1);
+            }
+            .navbar .nav-link {
+                padding: 0.6rem 0;
+            }
+            .navbar .btn {
+                width: 100%;
+                margin-top: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            .visi-misi-card {
+                padding: 1.5rem;
+            }
+            .brand-logo-img {
+                width: 40px;
+            }
+        }
+        
         /* Hero Section with Video Background */
         .hero-section {
             position: relative;
@@ -400,7 +386,6 @@
             overflow: hidden;
         }
         
-        /* Video Background Styling */
         .hero-video-background {
             position: absolute;
             top: 0;
@@ -411,7 +396,6 @@
             z-index: 0;
         }
         
-        /* Overlay untuk memastikan teks tetap terbaca */
         .hero-section::before {
             content: "";
             position: absolute;
@@ -429,17 +413,11 @@
             z-index: 2;
         }
         
-        /* Fallback jika video tidak bisa dimuat - tetap tampilkan background solid */
         .hero-section.no-video {
             background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1600&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-        }
-        
-        /* Optional: Tambahkan subtle transisi untuk smooth video loading */
-        .hero-video-background {
-            transition: opacity 0.5s ease;
         }
         
         .card-hover {
@@ -518,81 +496,39 @@
             display: inline-block;
         }
         
-        .job-card {
-            background: white;
-            border-left: 5px solid var(--primary-blue);
-            transition: all 0.2s;
-        }
-        
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary-blue-light);
-            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
-        }
-        
         .text-primary-blue {
             color: var(--primary-blue) !important;
-        }
-        
-        .bg-gradient-blue {
-            background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
-        }
-        
-        .partner-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px -12px rgba(37, 99, 235, 0.2);
-        }
-        
-        .navbar-brand:hover .brand-logo-img {
-            transform: scale(1.05);
-            transition: transform 0.3s ease;
         }
         
         .alert {
             border-radius: 12px;
             margin-bottom: 20px;
         }
+        
         .swiper-slide {
-        width: auto;
-        max-width: 200px;
-    }
-    @media (max-width: 768px) {
-        .swiper-slide {
-            max-width: 160px;
+            width: auto;
+            max-width: 200px;
         }
-    }
-    .partner-item {
-        transition: transform 0.3s ease;
-        height: 100%;
-        min-height: 100px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-    }
-    .partner-item:hover {
-        transform: translateY(-5px);
-    }
-    .badge-custom {
-        background: #e0e7ff;
-        color: #1e40af;
-        padding: 5px 12px;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        display: inline-block;
-    }
-    .section-title {
-        margin-top: 15px;
-        font-weight: 700;
-    }
-    .fw-semibold {
-        font-weight: 600;
-        font-size: 0.9rem;
-        text-align: center;
-    }
-    .mySwiper .swiper-wrapper {
-        transition-timing-function: linear !important;
-    }
+        
+        @media (max-width: 768px) {
+            .swiper-slide {
+                max-width: 160px;
+            }
+        }
+        
+        .partner-item {
+            transition: transform 0.3s ease;
+            height: 100%;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .mySwiper .swiper-wrapper {
+            transition-timing-function: linear !important;
+        }
     </style>
 </head>
 <body>
@@ -624,8 +560,8 @@
 <div class="main-content" id="mainContent">
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNavbar">
     <div class="container">
-        <a class="navbar-brand fw-bold text-white d-flex align-items-center" href="#">
-            <img src="image/logo.png" class="d-inline-block align-text-top me-2 brand-logo-img" alt="Logo PT Pesona Lintang Kemukus" onerror="this.src='https://placehold.co/45x45/2563eb/white?text=PLK'">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="image/logo.png" class="brand-logo-img" alt="Logo PT Pesona Lintang Kemukus" onerror="this.src='https://placehold.co/45x45/2563eb/white?text=PLK'">
             <span class="brand-text">Pesona Lintang Kemukus</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -647,8 +583,6 @@
     </div>
 </nav>
 
-
-<!-- HOME SECTION with VIDEO BACKGROUND (LOKAL FILE) -->
 <!-- HOME SECTION with VIDEO BACKGROUND -->
 <section id="home" class="hero-section">
     <video class="hero-video-background" autoplay muted loop playsinline id="heroVideo">
@@ -658,9 +592,6 @@
     <div class="container py-5 my-4">
         <div class="row align-items-center min-vh-75">
             <div class="col-lg-7 text-white mb-5 mb-lg-0" data-aos="fade-up">
-                <span class="badge-custom d-inline-block mb-4" style="background: rgba(255,255,255,0.15); color: white; backdrop-filter: blur(4px);">
-                    <i class="fas fa-truck-pickup me-2"></i> Solusi Mobilitas Corporate & Tol
-                </span>
                 <h1 class="display-4 fw-bold mb-4">Sewa Kendaraan & <br>Alat Berat <span style="color: #60a5fa;">Terpercaya</span> Untuk Perusahaan</h1>
                 <p class="lead mb-4 opacity-90" style="font-size: 1.2rem;">Mulai dari kendaraan kecil hingga alat berat proyek tol. PT Pesona Lintang Kemukus (PETAKUS) menghadirkan layanan premium untuk korporasi dengan standar keselamatan dan ketepatan waktu.</p>
                 <div class="d-flex flex-wrap gap-3 mb-5">
@@ -672,7 +603,6 @@
                     </a>
                 </div>
                 
-                <!-- Statistik / Layanan Ringkas -->
                 <div class="row g-4 mt-2">
                     <div class="col-4 text-center">
                         <div>
@@ -700,22 +630,19 @@
             
             <div class="col-lg-5 text-center" data-aos="fade-left">
                 <div class="position-relative">
-                    <!-- Efek shadow/glow pada logo -->
-                    <div >
-                        <img src="image/logo.png" alt="PT Pesona Lintang Kemukus" class="img-fluid" style="max-width: 480px;">
-                    </div>
+                    <img src="image/logo.png" alt="PT Pesona Lintang Kemukus" class="img-fluid" style="max-width: 480px;">
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ========== SISANYA KONTEN SAMA PERSIS DENGAN ASLINYA (TIDAK BERUBAH) ========== -->
+<!-- TENTANG SECTION -->
 <section id="tentang" class="py-5 bg-soft-blue">
     <div class="container py-4">
         <div class="row g-5 align-items-center">
             <div class="col-lg-6" data-aos="fade-right">
-                <span class="badge-custom"><i class="fas fa-building me-1"></i> About Company</span>
+                
                 <h2 class="section-title mt-3 fs-1">PT Pesona Lintang Kemukus</h2>
                 <p class="mt-3 fs-5 text-secondary">Perusahaan kami berfokus pada penyediaan jasa sewa kendaraan operasional dan alat berat untuk korporasi, kontraktor jalan tol, serta industri logistik. Dengan armada modern dan mitra tersertifikasi, kami memberikan solusi mobilitas yang andal di seluruh Indonesia.</p>
                 <div class="row mt-4">
@@ -728,16 +655,12 @@
             </div>
             <div class="col-lg-6" data-aos="fade-left">
                 <div class="bg-white p-4 rounded-4 shadow-sm">
-                    <!-- Bootstrap Carousel Slide Gambar -->
                     <div id="carouselTentang" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4001">
-                        
-                        <!-- Indikator slide (opsional, direkomendasikan) -->
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#carouselTentang" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                             <button type="button" data-bs-target="#carouselTentang" data-bs-slide-to="1" aria-label="Slide 2"></button>
                             <button type="button" data-bs-target="#carouselTentang" data-bs-slide-to="2" aria-label="Slide 3"></button>
                         </div>
-
                         <div class="carousel-inner rounded-3">
                             <div class="carousel-item active">
                                 <img src="image/car 1.jpg" class="d-block w-100" alt="Kantor Pusat Mensana Tower">
@@ -749,7 +672,6 @@
                                 <img src="image/car 3.jpg" class="d-block w-100" alt="Depo di 8 Kota Besar">
                             </div>
                         </div>
-
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselTentang" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
@@ -759,18 +681,16 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
-                    <!-- Akhir Carousel -->
-                    
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<!-- VISI MISI SECTION -->
 <section id="visimisi" class="py-5">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="badge-custom">Landasan Perusahaan</span>
             <h2 class="section-title mt-2">Visi & Misi</h2>
             <p class="text-muted w-75 mx-auto">Mewujudkan ekosistem transportasi dan alat berat yang modern serta terintegrasi</p>
         </div>
@@ -798,209 +718,89 @@
     </div>
 </section>
 
+<!-- STRUKTUR SECTION -->
 <section id="struktur" class="py-5 bg-soft-blue">
     <div class="container">
         <div class="text-center mb-4" data-aos="fade-up">
-            <span class="badge-custom">Organisasi</span>
             <h2 class="section-title">Struktur Perusahaan</h2>
             <p>Tim solid yang memastikan layanan prima untuk setiap klien</p>
         </div>
         <div class="row justify-content-center g-4 text-center">
-            <div class="col-lg-3 col-md-6" data-aos="zoom-in">
-                <div class="structure-item p-4 bg-white rounded-4 shadow-sm">
-                    <i class="fas fa-chart-line fa-3x text-primary-blue"></i>
-                    <h5 class="mt-3 fw-bold">Direktur</h5>
-                    <p class="text-muted">Yustina Insari U</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" data-aos="zoom-in">
-                <div class="structure-item p-4 bg-white rounded-4 shadow-sm">
-                    <i class="fas fa-user-tie fa-3x text-primary-blue"></i>
-                    <h5 class="mt-3 fw-bold">Head Office Manager</h5>
-                    <p class="text-muted">B.S. Sukarno</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-                <div class="structure-item p-4 bg-white rounded-4 shadow-sm">
-                    <i class="fas fa-tools fa-3x text-primary-blue"></i>
-                    <h5 class="mt-3 fw-bold">Operation Manager</h5>
-                    <p class="text-muted">Bayu Prakoso</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                <div class="structure-item p-4 bg-white rounded-4 shadow-sm">
-                    <i class="fas fa-money-bill-wave fa-3x text-primary-blue"></i>
-                    <h5 class="mt-3 fw-bold">Finance Manager</h5>
-                    <p class="text-muted">Lintar R.</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                <div class="structure-item p-4 bg-white rounded-4 shadow-sm">
-                    <i class="fas fa-money-bill-wave fa-3x text-primary-blue"></i>
-                    <h5 class="mt-3 fw-bold">Finance</h5>
-                    <p class="text-muted">Siswanto</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
-                <div class="structure-item p-4 bg-white rounded-4 shadow-sm">
-                    <i class="fas fa-desktop fa-3x text-primary-blue"></i>
-                    <h5 class="mt-3 fw-bold">Admin Manager</h5>
-                    <p class="text-muted">Lintang R.</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300">
-                <div class="structure-item p-4 bg-white rounded-4 shadow-sm">
-                    <i class="fas fa-wrench fa-3x text-primary-blue"></i>
-                    <h5 class="mt-3 fw-bold">Maintenance SPV</h5>
-                    <p class="text-muted">Muslim R.</p>
-                </div>
-            </div>
+            <div class="col-lg-3 col-md-6" data-aos="zoom-in"><div class="structure-item p-4 bg-white rounded-4 shadow-sm"><i class="fas fa-chart-line fa-3x text-primary-blue"></i><h5 class="mt-3 fw-bold">Direktur</h5><p class="text-muted">Yustina Insari U</p></div></div>
+            <div class="col-lg-3 col-md-6" data-aos="zoom-in"><div class="structure-item p-4 bg-white rounded-4 shadow-sm"><i class="fas fa-user-tie fa-3x text-primary-blue"></i><h5 class="mt-3 fw-bold">Head Office Manager</h5><p class="text-muted">B.S. Sukarno</p></div></div>
+            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200"><div class="structure-item p-4 bg-white rounded-4 shadow-sm"><i class="fas fa-tools fa-3x text-primary-blue"></i><h5 class="mt-3 fw-bold">Operation Manager</h5><p class="text-muted">Bayu Prakoso</p></div></div>
+            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100"><div class="structure-item p-4 bg-white rounded-4 shadow-sm"><i class="fas fa-money-bill-wave fa-3x text-primary-blue"></i><h5 class="mt-3 fw-bold">Finance Manager</h5><p class="text-muted">Lintar R.</p></div></div>
+            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100"><div class="structure-item p-4 bg-white rounded-4 shadow-sm"><i class="fas fa-money-bill-wave fa-3x text-primary-blue"></i><h5 class="mt-3 fw-bold">Finance</h5><p class="text-muted">Siswanto</p></div></div>
+            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300"><div class="structure-item p-4 bg-white rounded-4 shadow-sm"><i class="fas fa-desktop fa-3x text-primary-blue"></i><h5 class="mt-3 fw-bold">Admin Manager</h5><p class="text-muted">Lintang R.</p></div></div>
+            <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="300"><div class="structure-item p-4 bg-white rounded-4 shadow-sm"><i class="fas fa-wrench fa-3x text-primary-blue"></i><h5 class="mt-3 fw-bold">Maintenance SPV</h5><p class="text-muted">Muslim R.</p></div></div>
         </div>
         <div class="text-center mt-5 small text-secondary">*Didukung divisi maintenance, safety, logistik, dan admin keuangan yang terintegrasi</div>
     </div>
 </section>
 
+<!-- PENGALAMAN PEKERJAAN SECTION -->
 <section id="pekerjaan" class="py-5">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="badge-custom">Portofolio Proyek</span>
             <h2 class="section-title">Pengalaman Pekerjaan</h2>
             <p>Pengalaman jasa sewa kendaraan 5 Tahun terakhir 2020 s/d 2025</p>
         </div>
         <div class="row g-4">
-            <div class="col-md-6 col-lg-4" data-aos="flip-left">
-                <div class="experience-item p-4 h-100 bg-white shadow-sm rounded-4">
-                    <i class="fas fa-road fa-2x text-primary-blue mb-3"></i>
-                    <h4>Kendaraan Operasional Jalan Tol Ruas Manado Bitung</h4>
-                    <p class="text-muted">Penyewaan 11 unit kendaraan dari mobil patroli hingga mobil tangki air, antara lain Hilux Double Cabin, Civic Turbo, Toyota Avanza, Daihatsu Granmax minibus, Daihatsu Granmax Pick Up, Mitsubishi PS 250, Toyota Fortuner 2,4 TRD, Mitsubishi New Xpander Cross, New Toyota Rush 1.5 A/T, Xpander Ultimate 1.5 A/T, Toyota New Vios 1.5 A/T</p>
-                    <span class="badge bg-primary-blue">Tol Ruas Manado Bitung</span>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="100">
-                <div class="experience-item p-4 h-100 bg-white shadow-sm rounded-4">
-                    <i class="fas fa-road fa-2x text-primary-blue mb-3"></i>
-                    <h4>Kendaraan Operasional Jalan Tol Ruas Cibitung - Tanjung Priok</h4>
-                    <p class="text-muted">Penyewaan 7 unit kendaraan dari mobil patroli hingga mobil Perawatan, antara lain Isuzu Elf Long 20 seat, Toyota Avanza Veloz 1.5 A/T, Toyota Avanza Veloz 1.3 A/T, Mitsubishi PS 125, Daihatsu Granmax PU 1.5 AC PS, Daihatsu Granmax PU 1.5 Non AC PS, Suzuki New Carry 1.5.</p>
-                    <span class="badge bg-primary-blue">Tol Ruas Cibitung - Tanjung Priok</span>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="200">
-                <div class="experience-item p-4 h-100 bg-white shadow-sm rounded-4">
-                    <i class="fas fa-building fa-2x text-primary-blue mb-3"></i>
-                    <h4>Kendaraan Operasional Akses Pelabuhan Indonesia Jalan Tol Ruas Cibitung - Cilincing</h4>
-                    <p class="text-muted">Penyewaan kendaraan untuk mendukung operasional di area pelabuhan dan jalan tol. Seperti Toyota Hilux Single Cabin 2.4 Dsl (3 unit), Toyota Hilux Double Cabin 2.4 Dsl (2 unit), Daihatsu Xenia 1.3 R CVT (5 unit), dan lainnya.</p>
-                    <span class="badge bg-primary-blue">Logistik</span>
-                </div>
-            </div>
+            <div class="col-md-6 col-lg-4" data-aos="flip-left"><div class="experience-item p-4 h-100 bg-white shadow-sm rounded-4"><i class="fas fa-road fa-2x text-primary-blue mb-3"></i><h4>Kendaraan Operasional Jalan Tol Ruas Manado Bitung</h4><p class="text-muted">Penyewaan 11 unit kendaraan dari mobil patroli hingga mobil tangki air...</p><span class="badge bg-primary-blue">Tol Ruas Manado Bitung</span></div></div>
+            <div class="col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="100"><div class="experience-item p-4 h-100 bg-white shadow-sm rounded-4"><i class="fas fa-road fa-2x text-primary-blue mb-3"></i><h4>Kendaraan Operasional Jalan Tol Ruas Cibitung - Tanjung Priok</h4><p class="text-muted">Penyewaan 7 unit kendaraan dari mobil patroli hingga mobil Perawatan...</p><span class="badge bg-primary-blue">Tol Ruas Cibitung - Tanjung Priok</span></div></div>
+            <div class="col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="200"><div class="experience-item p-4 h-100 bg-white shadow-sm rounded-4"><i class="fas fa-building fa-2x text-primary-blue mb-3"></i><h4>Kendaraan Operasional Akses Pelabuhan Indonesia</h4><p class="text-muted">Penyewaan kendaraan untuk mendukung operasional di area pelabuhan dan jalan tol...</p><span class="badge bg-primary-blue">Logistik</span></div></div>
         </div>
     </div>
 </section>
 
+<!-- LOKASI SECTION -->
 <section id="lokasi" class="py-5 bg-soft-blue">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-5" data-aos="fade-right">
-                <span class="badge-custom"><i class="fas fa-map-pin"></i> Jangkauan Layanan</span>
-                <h2 class="section-title mt-2">Lokasi Pekerjaan & Operasional</h2>
+               <h2 class="section-title mt-2">Lokasi Pekerjaan & Operasional</h2>
                 <p class="lead">Kami hadir di berbagai titik strategis di Pulau Jawa, Sumatra, dan Kalimantan. Mendukung proyek jalan tol, kawasan industri, hingga site tambang terpencil.</p>
-                <div class="mt-4">
-                    <div class="d-flex mb-3"><i class="fas fa-check-circle text-primary-blue me-3 mt-1"></i> <div><strong>Jakarta & Sekitarnya</strong> – Pusat koordinasi dan hub utama</div></div>
-                   
-                </div>
             </div>
             <div class="col-lg-7 mt-4 mt-lg-0" data-aos="fade-left">
                 <div class="bg-white p-3 rounded-4 shadow">
                     <div class="ratio ratio-16x9">
-                        <iframe 
-                            src="https://maps.google.com/maps?q=Mensana+Tower+Cibubur,+Jl.+Raya+Kranggan,+Jatisampurna&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                            class="rounded-3" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+                        <iframe src="https://maps.google.com/maps?q=Mensana+Tower+Cibubur,+Jl.+Raya+Kranggan,+Jatisampurna&t=&z=15&ie=UTF8&iwloc=&output=embed" class="rounded-3" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
-                    <p class="text-muted small text-center mt-3">*Lokasi pool dan project site dapat diakses untuk keperluan survey</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<!-- MITRA SECTION -->
 <section id="mitra" class="py-5">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="badge-custom">Jaringan</span>
             <h2 class="section-title">Partner & Support</h2>
             <p>Dipercaya oleh berbagai instansi dan brand ternama</p>
         </div>
-
-        <!-- Swiper Container -->
         <div class="swiper mySwiper" style="overflow: hidden; padding: 20px 0;">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div >
-                        <!-- Tempat untuk logo Anda -->
-                        <img src="image/jsmg.png" alt="Kementerian PUPR" class="img-fluid mb-2">
-                        
-                    </div>
-                </div>
-                <!-- Slide 2 -->
-                <div class="swiper-slide">
-                    <div >
-                        <img src="image/Logo_Asuransi_Sinarmas.png" alt="PT Wijaya Karya" class="img-fluid mb-2">
-                        
-                    </div>
-                </div>
-                <!-- Slide 3 -->
-                <div class="swiper-slide">
-                    <div >
-                        <img src="image/Mag.png" alt="Sinarmas Logistik" class="img-fluid mb-2">
-                        
-                    </div>
-                </div>
-                <!-- Slide 4 -->
-                <div class="swiper-slide">
-                    <div >
-                        <img src="image/ramayana.png" alt="Asuransi Astra" class="img-fluid mb-2">
-                    </div>
-                </div>
-                <!-- Slide 5 (duplikat untuk infinite) -->
-                <div class="swiper-slide">
-                    <div >
-                        <img src="image/jsmg manado.png" alt="Kementerian PUPR" class="img-fluid mb-2">
-                    </div>
-                </div>
-                <!-- Slide 6 -->
-                <div class="swiper-slide">
-                    <div >
-                        <img src="image/jsmg pasuruan.png" alt="PT Wijaya Karya" class="img-fluid mb-2">
-                        
-                    </div>
-                </div>
-                <!-- Slide 7 -->
-                <div class="swiper-slide">  
-                    <div >
-                        <img src="image/pelindo.png" alt="Sinarmas Logistik" class="img-fluid mb-2">
-                        
-                    </div>
+                <div class="swiper-slide"><img src="image/jsmg.png" alt="Kementerian PUPR" class="img-fluid"></div>
+                <div class="swiper-slide"><img src="image/Logo_Asuransi_Sinarmas.png" alt="Asuransi Sinarmas" class="img-fluid"></div>
+                <div class="swiper-slide"><img src="image/Mag.png" alt="Mag" class="img-fluid"></div>
+                <div class="swiper-slide"><img src="image/ramayana.png" alt="Ramayana" class="img-fluid"></div>
+                <div class="swiper-slide"><img src="image/jsmg manado.png" alt="JSMG Manado" class="img-fluid"></div>
+                <div class="swiper-slide"><img src="image/jsmg pasuruan.png" alt="JSMG Pasuruan" class="img-fluid"></div>
+                <div class="swiper-slide"><img src="image/Pelindo.png" alt="Pelindo" class="img-fluid"></div>
             </div>
         </div>
     </div>
 </section>
 
-
-
-<!-- JS Swiper -->
-
+<!-- SUPPORT SECTION -->
 <section id="support" class="py-5 bg-soft-blue">
     <div class="container">
         <div class="row g-4 align-items-center">
             <div class="col-lg-6" data-aos="fade-right">
                 <div class="bg-white p-5 rounded-4 shadow-sm">
-                    <i class="fas fa-life-ring fa-3x text-primary-blue mb-3"></i>
                     <h3 class="fw-bold">24/7 Customer Support</h3>
-                    <p>Layanan darurat dan bantuan teknis 24 jam untuk memastikan operasional Anda tidak terhambat. Tim support kami siap sigap menangani kendala di lapangan, baik untuk kendaraan kecil maupun alat berat.</p>
+                    <p>Layanan darurat dan bantuan teknis 24 jam untuk memastikan operasional Anda tidak terhambat.</p>
                     <div class="mt-3"><i class="fas fa-phone-alt text-primary-blue me-2"></i> Hotline: 1500-789</div>
                     <div><i class="fas fa-envelope text-primary-blue me-2"></i> support@pesonalintang.co.id</div>
                 </div>
@@ -1021,51 +821,24 @@
     </div>
 </section>
 
+<!-- KONTAK SECTION -->
 <section id="kontak" class="py-5">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center" data-aos="fade-up">
-                <span class="badge-custom">Hubungi Kami</span>
                 <h2 class="section-title">Siap Mendukung Kebutuhan Operasional Anda?</h2>
                 <p class="mb-4">Dapatkan penawaran terbaik untuk sewa kendaraan dan alat berat, khusus untuk korporasi dan proyek jalan tol</p>
                 
-                <div id="successAlert" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;">
-                    <i class="fas fa-check-circle me-2"></i> Pesan berhasil dikirim! Anda akan diarahkan ke WhatsApp dalam beberapa detik.
-                    <button type="button" class="btn-close" onclick="document.getElementById('successAlert').style.display='none'"></button>
-                </div>
-                
-                <div id="errorAlert" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none;">
-                    <i class="fas fa-exclamation-triangle me-2"></i> <span id="errorMessage"></span>
-                    <button type="button" class="btn-close" onclick="document.getElementById('errorAlert').style.display='none'"></button>
-                </div>
+                <div id="successAlert" class="alert alert-success" style="display: none;"><i class="fas fa-check-circle me-2"></i> Pesan berhasil dikirim! Anda akan diarahkan ke WhatsApp.</div>
+                <div id="errorAlert" class="alert alert-danger" style="display: none;"><i class="fas fa-exclamation-triangle me-2"></i> <span id="errorMessage"></span></div>
                 
                 <form id="waForm" class="row g-3 bg-white p-4 p-md-5 rounded-4 shadow-sm">
-                    <div class="col-md-6">
-                        <input type="text" id="namaPerusahaan" class="form-control form-control-lg" placeholder="Nama Perusahaan" required>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="email" id="email" class="form-control form-control-lg" placeholder="Email Corporate" required>
-                    </div>
-                    <div class="col-12">
-                        <input type="tel" id="nomorTelepon" class="form-control form-control-lg" placeholder="Nomor Telepon / WA" required>
-                    </div>
-                    <div class="col-12">
-                        <select id="kebutuhan" class="form-select form-select-lg"  required>
-                            <option value="" disabled selected>Pilih Jenis Kebutuhan</option>
-                            <option value="Kendaraan Kecil"> Kendaraan Kecil</option>
-                            <option value="Kendaraan Besar (Bus/Truck)">Kendaraan Besar (Bus/Truck)</option>
-                            <option value="Alat Berat (Excavator, Crane, dll)">Alat Berat (Excavator, Crane, dll)</option>
-                            <option value="Proyek Jalan Tol Skala Besar">Proyek Jalan Tol Skala Besar</option>
-                        </select>
-                    </div>
-                    <div class="col-12">
-                        <textarea id="detail" rows="3" class="form-control" placeholder="Detail kebutuhan armada dan durasi sewa..."></textarea>
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary-blue w-100 py-3 fw-bold fs-5">
-                            <i class="fab fa-whatsapp me-2"></i> Kirim Permintaan via WhatsApp
-                        </button>
-                    </div>
+                    <div class="col-md-6"><input type="text" id="namaPerusahaan" class="form-control form-control-lg" placeholder="Nama Perusahaan" required></div>
+                    <div class="col-md-6"><input type="email" id="email" class="form-control form-control-lg" placeholder="Email Corporate" required></div>
+                    <div class="col-12"><input type="tel" id="nomorTelepon" class="form-control form-control-lg" placeholder="Nomor Telepon / WA" required></div>
+                    <div class="col-12"><select id="kebutuhan" class="form-select form-select-lg" required><option value="" disabled selected>Pilih Jenis Kebutuhan</option><option value="Kendaraan Kecil">Kendaraan Kecil</option><option value="Kendaraan Besar (Bus/Truck)">Kendaraan Besar (Bus/Truck)</option><option value="Alat Berat (Excavator, Crane, dll)">Alat Berat</option><option value="Proyek Jalan Tol Skala Besar">Proyek Jalan Tol Skala Besar</option></select></div>
+                    <div class="col-12"><textarea id="detail" rows="3" class="form-control" placeholder="Detail kebutuhan armada dan durasi sewa..."></textarea></div>
+                    <div class="col-12"><button type="submit" class="btn btn-primary-blue w-100 py-3 fw-bold fs-5"><i class="fab fa-whatsapp me-2"></i> Kirim Permintaan via WhatsApp</button></div>
                 </form>
             </div>
         </div>
@@ -1075,305 +848,118 @@
 <footer class="footer pt-5 pb-4">
     <div class="container">
         <div class="row">
-            <div class="col-md-5 mb-4">
-                <h4 class="text-primary-blue">PT Pesona Lintang Kemukus</h4>
-                <p>Solusi sewa kendaraan & alat berat untuk korporasi, proyek jalan tol, dan industri nasional. Kepercayaan adalah fondasi kami.</p>
-                <div><i class="fas fa-map-marker-alt me-2 text-primary-blue"></i>  Mensana Tower Lantai 6 Unit K, Jalan Raya Kranggan No. 69, Jatisampurna, Kota Bekasi, Jawa Barat 17433.</div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <h5 class="text-white">Tautan Cepat</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#home" class="text-decoration-none text-secondary">Beranda</a></li>
-                    <li><a href="#tentang" class="text-decoration-none text-secondary">Tentang</a></li>
-                    <li><a href="#struktur" class="text-decoration-none text-secondary">Struktur</a></li>
-                    <li><a href="#pekerjaan" class="text-decoration-none text-secondary">Portofolio</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4 mb-4">
-                <h5 class="text-white">Hubungi Kami</h5>
-                <p><i class="fab fa-whatsapp me-2 text-primary-blue"></i> +62 852 8346 0805<br><i class="fas fa-envelope me-2 text-primary-blue"></i> pesonalintangkemukus@gmail.com</p>
-                <div class="mt-3">
-                    <a href="https://www.linkedin.com/in/pt-pesona-lintang-kemukus-197165270/" class="text-primary-blue me-3 fs-5"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.instagram.com/pesonalintangkemukus/" class="text-primary-blue me-3 fs-5"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
+            <div class="col-md-5 mb-4"><h4 class="text-primary-blue">PT Pesona Lintang Kemukus</h4><p>Solusi sewa kendaraan & alat berat untuk korporasi, proyek jalan tol, dan industri nasional.</p><div><i class="fas fa-map-marker-alt me-2 text-primary-blue"></i> Mensana Tower Lantai 6 Unit K, Jalan Raya Kranggan No. 69, Jatisampurna, Kota Bekasi, Jawa Barat 17433.</div></div>
+            <div class="col-md-3 mb-4"><h5 class="text-white">Tautan Cepat</h5><ul class="list-unstyled"><li><a href="#home" class="text-decoration-none text-secondary">Beranda</a></li><li><a href="#tentang" class="text-decoration-none text-secondary">Tentang</a></li><li><a href="#struktur" class="text-decoration-none text-secondary">Struktur</a></li><li><a href="#pekerjaan" class="text-decoration-none text-secondary">Portofolio</a></li></ul></div>
+            <div class="col-md-4 mb-4"><h5 class="text-white">Hubungi Kami</h5><p><i class="fab fa-whatsapp me-2 text-primary-blue"></i> +62 852 8346 0805<br><i class="fas fa-envelope me-2 text-primary-blue"></i> pesonalintangkemukus@gmail.com</p><div class="mt-3"><a href="#" class="text-primary-blue me-3 fs-5"><i class="fab fa-linkedin"></i></a><a href="#" class="text-primary-blue me-3 fs-5"><i class="fab fa-instagram"></i></a></div></div>
         </div>
         <hr class="opacity-25">
         <div class="text-center small">© 2026 PT Pesona Lintang Kemukus — Solusi Sewa Kendaraan & Alat Berat Corporate & Tol</div>
     </div>
 </footer>
-
-</div> <!-- end main-content -->
+</div> 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
-    // ========== LOADER SYSTEM ==========
     (function() {
         const loaderWrapper = document.getElementById('loaderWrapper');
         const mainContent = document.getElementById('mainContent');
         const progressBar = document.getElementById('progressBar');
         const percentageSpan = document.getElementById('percentage');
         const loadingMessage = document.getElementById('loadingMessage');
-        
-        // Array of loading messages
-        const messages = [
-            'Menyiapkan antarmuka...',
-            'Memuat data perusahaan...',
-            'Menyajikan layanan terbaik...',
-            'Mempersiapkan portofolio...',
-            'Hampir selesai...'
-        ];
-        
-        let progress = 0;
-        let messageIndex = 0;
-        
-        // Update progress bar
-        function updateProgress() {
-            const interval = setInterval(() => {
-                if (progress < 100) {
-                    progress += Math.floor(Math.random() * 10) + 1;
-                    if (progress > 100) progress = 100;
-                    
-                    progressBar.style.width = progress + '%';
-                    percentageSpan.textContent = progress + '%';
-                    
-                    // Change message at certain percentages
-                    if (progress >= 25 && messageIndex === 0) {
-                        messageIndex = 1;
-                        loadingMessage.style.opacity = '0';
-                        setTimeout(() => {
-                            loadingMessage.textContent = messages[1];
-                            loadingMessage.style.opacity = '1';
-                        }, 300);
-                    } else if (progress >= 50 && messageIndex === 1) {
-                        messageIndex = 2;
-                        loadingMessage.style.opacity = '0';
-                        setTimeout(() => {
-                            loadingMessage.textContent = messages[2];
-                            loadingMessage.style.opacity = '1';
-                        }, 300);
-                    } else if (progress >= 75 && messageIndex === 2) {
-                        messageIndex = 3;
-                        loadingMessage.style.opacity = '0';
-                        setTimeout(() => {
-                            loadingMessage.textContent = messages[3];
-                            loadingMessage.style.opacity = '1';
-                        }, 300);
-                    } else if (progress >= 90 && messageIndex === 3) {
-                        messageIndex = 4;
-                        loadingMessage.style.opacity = '0';
-                        setTimeout(() => {
-                            loadingMessage.textContent = messages[4];
-                            loadingMessage.style.opacity = '1';
-                        }, 300);
-                    }
-                    
-                    if (progress === 100) {
-                        clearInterval(interval);
-                        // Wait a bit before hiding loader
-                        setTimeout(() => {
-                            loaderWrapper.classList.add('fade-out');
-                            mainContent.classList.add('visible');
-                            
-                            // Remove loader from DOM after animation
-                            setTimeout(() => {
-                                loaderWrapper.style.display = 'none';
-                            }, 500);
-                            
-                            // Initialize AOS after content is visible
-                            AOS.init({
-                                duration: 800,
-                                once: true,
-                                offset: 50
-                            });
-                            
-                            // Trigger scroll event to fix navbar active state
-                            window.dispatchEvent(new Event('scroll'));
-                            
-                            // Small handling for video: jika video gagal dimuat, tambahkan fallback class
-                            const heroVideo = document.getElementById('heroVideo');
-                            if (heroVideo) {
-                                heroVideo.addEventListener('error', function() {
-                                    document.querySelector('.hero-section').classList.add('no-video');
-                                });
-                            }
-                        }, 500);
-                    }
+        const messages = ['Menyiapkan antarmuka...', 'Memuat data perusahaan...', 'Menyajikan layanan terbaik...', 'Mempersiapkan portofolio...', 'Hampir selesai...'];
+        let progress = 0, msgIdx = 0;
+        const interval = setInterval(() => {
+            if (progress < 100) {
+                progress += Math.floor(Math.random() * 10) + 1;
+                if (progress > 100) progress = 100;
+                progressBar.style.width = progress + '%';
+                percentageSpan.textContent = progress + '%';
+                if (progress >= 25 && msgIdx === 0) { msgIdx = 1; loadingMessage.textContent = messages[1]; }
+                else if (progress >= 50 && msgIdx === 1) { msgIdx = 2; loadingMessage.textContent = messages[2]; }
+                else if (progress >= 75 && msgIdx === 2) { msgIdx = 3; loadingMessage.textContent = messages[3]; }
+                else if (progress >= 90 && msgIdx === 3) { msgIdx = 4; loadingMessage.textContent = messages[4]; }
+                if (progress === 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loaderWrapper.classList.add('fade-out');
+                        mainContent.classList.add('visible');
+                        setTimeout(() => { loaderWrapper.style.display = 'none'; }, 500);
+                        AOS.init({ duration: 800, once: true, offset: 50 });
+                        window.dispatchEvent(new Event('scroll'));
+                        const heroVideo = document.getElementById('heroVideo');
+                        if (heroVideo) heroVideo.addEventListener('error', () => document.querySelector('.hero-section').classList.add('no-video'));
+                    }, 500);
                 }
-            }, 80);
-        }
-        
-        // Start loading
-        updateProgress();
+            }
+        }, 80);
     })();
-    
-    // ========== SMOOTH SCROLL & NAVIGATION ==========
+
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
     const sections = document.querySelectorAll('section[id]');
-    
     window.addEventListener('scroll', () => {
         let current = '';
         const scrollY = window.pageYOffset;
         sections.forEach(section => {
             const sectionTop = section.offsetTop - 100;
             const sectionHeight = section.offsetHeight;
-            if(scrollY >= sectionTop && scrollY < sectionTop + sectionHeight){
-                current = section.getAttribute('id');
-            }
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) current = section.getAttribute('id');
         });
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if(link.getAttribute('href') === `#${current}`){
-                link.classList.add('active');
-            }
+            if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
         });
     });
-    
-    // Smooth scroll for anchor links + auto-close mobile navbar
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             const target = document.querySelector(href);
-            if(target && href !== '#') {
+            if (target && href !== '#') {
                 e.preventDefault();
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                
-                // If navbar is open on mobile, close it after clicking a link
-                const navbarCollapseEl = document.querySelector('.navbar-collapse');
-                if (navbarCollapseEl && navbarCollapseEl.classList.contains('show')) {
-                    const bsCollapse = new bootstrap.Collapse(navbarCollapseEl, {toggle: false});
-                    bsCollapse.hide();
-                }
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) new bootstrap.Collapse(navbarCollapse, { toggle: false }).hide();
             }
         });
     });
-    
-    // ========== WHATSAPP FORM HANDLER ==========
+
+
     const WHATSAPP_NUMBER = '6285156262804';
-    
-    function formatPhoneNumber(phone) {
-        let cleaned = phone.replace(/\D/g, '');
-        if (cleaned.startsWith('0')) {
-            cleaned = '62' + cleaned.substring(1);
-        }
-        if (cleaned.startsWith('62') && cleaned.length >= 10) {
-            return cleaned;
-        }
-        return cleaned;
-    }
-    
     const waForm = document.getElementById('waForm');
     const successAlert = document.getElementById('successAlert');
     const errorAlert = document.getElementById('errorAlert');
-    const errorMessage = document.getElementById('errorMessage');
-    
-    function hideAlerts() {
-        if(successAlert) successAlert.style.display = 'none';
-        if(errorAlert) errorAlert.style.display = 'none';
-    }
-    
-    function showError(message) {
-        if(errorMessage) errorMessage.innerText = message;
-        if(errorAlert) errorAlert.style.display = 'block';
-        setTimeout(() => {
-            if(errorAlert) errorAlert.style.display = 'none';
-        }, 4000);
-    }
-    
-    function showSuccess() {
-        if(successAlert) successAlert.style.display = 'block';
-        setTimeout(() => {
-            if(successAlert) successAlert.style.display = 'none';
-        }, 5000);
-    }
-    
-    if(waForm) {
+    const errorMsg = document.getElementById('errorMessage');
+    if (waForm) {
         waForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            hideAlerts();
-            
-            const namaPerusahaan = document.getElementById('namaPerusahaan').value.trim();
+            successAlert.style.display = 'none';
+            errorAlert.style.display = 'none';
+            const nama = document.getElementById('namaPerusahaan').value.trim();
             const email = document.getElementById('email').value.trim();
-            const nomorTelepon = document.getElementById('nomorTelepon').value.trim();
+            const telp = document.getElementById('nomorTelepon').value.trim();
             const kebutuhan = document.getElementById('kebutuhan').value;
             const detail = document.getElementById('detail').value.trim();
-            
-            if (!namaPerusahaan) {
-                showError('❌ Nama Perusahaan harus diisi');
-                return;
-            }
-            
-            if (!email) {
-                showError('❌ Email Corporate harus diisi');
-                return;
-            }
-            
-            const emailRegex = /^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/;
-            if (!emailRegex.test(email)) {
-                showError('❌ Format email tidak valid (contoh: nama@perusahaan.com)');
-                return;
-            }
-            
-            if (!nomorTelepon) {
-                showError('❌ Nomor Telepon/WA harus diisi');
-                return;
-            }
-            
-            const phoneDigits = nomorTelepon.replace(/\D/g, '');
-            if (phoneDigits.length < 10) {
-                showError('❌ Nomor telepon terlalu pendek (minimal 10 digit)');
-                return;
-            }
-            
-            let pesan = `*PERMINTAAN SEWA KENDARAAN & ALAT BERAT*\n\n`;
-            pesan += `*Nama Perusahaan:* ${namaPerusahaan}\n`;
-            pesan += `*Email:* ${email}\n`;
-            pesan += `*No. Telepon/WA:* ${nomorTelepon}\n`;
-            pesan += `*Kebutuhan:* ${kebutuhan}\n`;
-            pesan += `*Detail Permintaan:* ${detail || '-'}\n\n`;
-            pesan += `_Pesan dikirim melalui form website pada ${new Date().toLocaleString('id-ID')}_`;
-            
-            const pesanEncoded = encodeURIComponent(pesan);
-            const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${pesanEncoded}`;
-            
-            showSuccess();
+            if (!nama) { errorMsg.innerText = 'Nama Perusahaan harus diisi'; errorAlert.style.display = 'block'; return; }
+            if (!email || !/^[^\s@]+@([^\s@.,]+\.)+[^\s@.,]{2,}$/.test(email)) { errorMsg.innerText = 'Email tidak valid'; errorAlert.style.display = 'block'; return; }
+            if (!telp || telp.replace(/\D/g, '').length < 10) { errorMsg.innerText = 'Nomor telepon tidak valid'; errorAlert.style.display = 'block'; return; }
+            let pesan = `*PERMINTAAN SEWA KENDARAAN & ALAT BERAT*\n\n*Nama Perusahaan:* ${nama}\n*Email:* ${email}\n*No. Telepon/WA:* ${telp}\n*Kebutuhan:* ${kebutuhan}\n*Detail:* ${detail || '-'}\n\n_Pesan dari website_`;
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(pesan)}`, '_blank');
+            successAlert.style.display = 'block';
             waForm.reset();
-            
-            setTimeout(() => {
-                window.open(waURL, '_blank');
-            }, 1000);
+            setTimeout(() => successAlert.style.display = 'none', 5000);
         });
     }
- 
-    // Jika jumlah slide sedikit, gandakan slide sehingga marquee/loop dapat berjalan mulus
-    var swiper = new Swiper(".mySwiper", {
-        slidesPerView: "auto",
-        spaceBetween: 20, // Anda bisa menyesuaikan jarak antar logo
-        loop: true,
-        speed: 3000, // Waktu transisi diperbesar agar bergeraknya pelan dan halus
-        autoplay: {
-            delay: 0, // Delay wajib 0 agar tidak ada jeda istirahat sama sekali
-            disableOnInteraction: false,
-        },
-        allowTouchMove: false, // Disarankan false agar marquee tidak error saat ditarik manual oleh user
-    });
-    // ========== NAVBAR SCROLL EFFECT ==========
-window.addEventListener('scroll', function() {
-    const navbar = document.getElementById('mainNavbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('navbar-scrolled');
-    } else {
-        navbar.classList.remove('navbar-scrolled');
-    }
-});
 
-// Trigger once on load to check initial position
-if (window.scrollY > 50) {
-    document.getElementById('mainNavbar').classList.add('navbar-scrolled');
-}
+    new Swiper(".mySwiper", { slidesPerView: "auto", spaceBetween: 20, loop: true, speed: 3000, autoplay: { delay: 0, disableOnInteraction: false }, allowTouchMove: false });
+
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('mainNavbar');
+        if (window.scrollY > 50) navbar.classList.add('navbar-scrolled');
+        else navbar.classList.remove('navbar-scrolled');
+    });
+    if (window.scrollY > 50) document.getElementById('mainNavbar').classList.add('navbar-scrolled');
 </script>
 </body>
 </html>
